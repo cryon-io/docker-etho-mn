@@ -18,11 +18,11 @@
 #
 #  Contact: cryi@tutanota.com
 
+
 BASEDIR=$(dirname "$0")
 BOOTSTRAP_URL=""
 
-if [ ! -d "$BASEDIR/../data/geth/" ]; then 
-    
+if [ ! -d "$BASEDIR/../data/etho/geth/" ]; then 
     if [ -n "$BOOTSTRAP_URL" ]; then
         URL="$BOOTSTRAP_URL"
     else 
@@ -39,22 +39,22 @@ if [ ! -d "$BASEDIR/../data/geth/" ]; then
     FILE=snapshot
 
     printf "loading chain snapshot"
-    mkdir -p "$BASEDIR/../data/geth/"
+    mkdir -p "$BASEDIR/../data/etho/geth/"
     case "$URL" in
     *.tar.gz) 
-        (cd "$BASEDIR/../data/geth/" && \
+        (cd "$BASEDIR/../data/etho/geth/" && \
         curl -L "$URL" -o "./$FILE.tar.gz" && \
         tar -xzvf "./$FILE.tar.gz" && \
         rm -f "./$FILE.tar.gz")
     ;;
     *.zip)
-        (cd "$BASEDIR/../data/geth/" && \
+        (cd "$BASEDIR/../data/etho/geth/" && \
         curl -L "$URL" -o "./$FILE.zip" && \
         unzip "./$FILE.zip" && \
         rm -f "./$FILE.zip")
     ;;
     *.tar.bz2)
-        (cd "$BASEDIR/../data/geth/" && \
+        (cd "$BASEDIR/../data/etho/geth/" && \
         curl -L "$URL" -o "./$FILE.tar.bz2" && \
         tar xjf "./$FILE.tar.bz2" && \
         rm -f "./$FILE.tar.bz2")

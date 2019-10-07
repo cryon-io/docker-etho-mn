@@ -49,11 +49,11 @@ if [ -z "$container" ]; then
     # masternode is not running
     exit 1
 fi
-sh "$BASEDIR/node-info.sh" > /dev/null
-get_latest_github_release "Ether1Project/Ether-1-SN-MN-Binaries"
+sh "$BASEDIR/node-info.sh" >/dev/null
+get_latest_github_release "Ether1Project/Ether-1-GN-Binaries"
 # shellcheck disable=SC1003
 ver=$(echo "$RESULT" | sed 's\v\\')
-if grep -q "VERSION: $ver" "$BASEDIR/../data/node.info" > /dev/null; then
+if grep -q "VERSION: $ver" "$BASEDIR/../data/etho/node.info" >/dev/null; then
     exit 0
 else
     if docker-compose -f "$BASEDIR/../docker-compose.yml" ${frffl-"--project-name"} ${frffl-"$PROJECT"} build --no-cache; then
@@ -64,10 +64,10 @@ else
         fi
     fi
     sleep 10
-    sh "$BASEDIR/node-info.sh" > /dev/null
-    if grep -q "VERSION: $ver" "$BASEDIR/../data/node.info" > /dev/null; then
+    sh "$BASEDIR/node-info.sh" >/dev/null
+    if grep -q "VERSION: $ver" "$BASEDIR/../data/etho/node.info" >/dev/null; then
         exit 0
-    else 
+    else
         # failed to update masternode
         exit 2
     fi
